@@ -47,3 +47,26 @@ spec:
     nodePort: 30001
   selector:
     name: front-end
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
+    kubernetes.io/ingress.class: ingress-nginx-private
+    kubernetes.io/tls-acme: "true"
+  name: front-end
+  namespace: sock-shop
+spec:
+  rules:
+  - host: sock-shop.devstg.aws.binbash.com.ar
+    http:
+      paths:
+      - backend:
+          serviceName: front-end
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - sock-shop.devstg.aws.binbash.com.ar
+    secretName: front-end-tls
