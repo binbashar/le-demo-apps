@@ -33,7 +33,7 @@ spec:
         - name: DSN
           value: catalogue_user:default_password@tcp(catalogue-db:3306)/socksdb
         - name: FOO
-          value: bar
+          value: fighters
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
