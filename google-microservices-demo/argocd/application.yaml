@@ -1,0 +1,24 @@
+#
+# Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/application.yaml
+#
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-gms
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/binbashar/le-demo-apps.git
+    targetRevision: HEAD
+    path: google-microservices-demo/kubernetes
+  
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo-gms
+
+  syncPolicy:
+    syncOptions:
+    - Validate=true
+    - CreateNamespace=true
