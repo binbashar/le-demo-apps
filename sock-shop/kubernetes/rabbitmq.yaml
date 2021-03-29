@@ -4,7 +4,6 @@ metadata:
   name: rabbitmq
   labels:
     name: rabbitmq
-  namespace: sock-shop
 spec:
   replicas: 1
   selector:
@@ -39,7 +38,6 @@ metadata:
   name: rabbitmq
   labels:
     name: rabbitmq
-  namespace: sock-shop
 spec:
   ports:
     # the port that this service should serve on

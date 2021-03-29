@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front-end
-  namespace: sock-shop
 spec:
   replicas: 1
   selector:
@@ -38,7 +37,6 @@ metadata:
   name: front-end
   labels:
     name: front-end
-  namespace: sock-shop
 spec:
   type: NodePort
   ports:
@@ -56,7 +54,6 @@ metadata:
     kubernetes.io/ingress.class: ingress-nginx-private
     kubernetes.io/tls-acme: "true"
   name: front-end
-  namespace: sock-shop
 spec:
   rules:
   - host: sock-shop.devstg.aws.binbash.com.ar

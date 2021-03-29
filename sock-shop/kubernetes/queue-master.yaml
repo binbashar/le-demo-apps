@@ -4,7 +4,6 @@ metadata:
   name: queue-master
   labels:
     name: queue-master
-  namespace: sock-shop
 spec:
   replicas: 1
   selector:
@@ -31,7 +30,6 @@ metadata:
     name: queue-master
   annotations:
     prometheus.io/path: "/prometheus"
-  namespace: sock-shop
 spec:
   ports:
     # the port that this service should serve on
