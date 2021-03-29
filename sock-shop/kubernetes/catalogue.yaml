@@ -14,22 +14,10 @@ spec:
     metadata:
       labels:
         name: catalogue
-      annotations:
-        vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/namespace: "admin"
-        vault.hashicorp.com/role: "demoapps_sockshop_readonly"
-        vault.hashicorp.com/agent-inject-secret-env: "secrets/data/le-demo-apps/sock-shop/devstg"
-        vault.hashicorp.com/agent-inject-template-env: |
-          {{ with secret "secrets/data/le-demo-apps/sock-shop/devstg" -}}
-            export DSN="{{ .Data.data.DSN }}"
-            export UUID="{{ .Data.data.UUID }}"
-          {{- end }}
     spec:
       containers:
       - name: catalogue
         image: weaveworksdemos/catalogue:0.3.5
-        command: ["/bin/sh"]
-        args: ["-c", "source /vault/secrets/env && echo UUID=$UUID && /app -port=80 -DSN=$DSN"]
         ports:
         - containerPort: 80
         securityContext:
@@ -41,11 +29,6 @@ spec:
             add:
               - NET_BIND_SERVICE
           readOnlyRootFilesystem: true
-        #env:
-        #- name: DSN
-        #  value: catalogue_user:default@tcp(catalogue-db:3306)/socksdb
-        #- name: FOO
-        #  value: fighters
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
