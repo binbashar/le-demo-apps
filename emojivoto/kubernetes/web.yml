@@ -3,21 +3,6 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: web
-  namespace: emojivoto
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: web-svc
-  namespace: emojivoto
-spec:
-  ports:
-  - name: http
-    port: 80
-    targetPort: 8080
-  selector:
-    app: web-svc
-  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -27,7 +12,6 @@ metadata:
     app.kubernetes.io/part-of: emojivoto
     app.kubernetes.io/version: v11
   name: web
-  namespace: emojivoto
 spec:
   replicas: 1
   selector:
@@ -59,3 +43,42 @@ spec:
           requests:
             cpu: 100m
       serviceAccountName: web
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: web-svc
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
+    kubernetes.io/ingress.class: ingress-nginx-private
+    kubernetes.io/tls-acme: "true"
+  labels:
+    app.kubernetes.io/name: web
+    app.kubernetes.io/part-of: emojivoto
+    app.kubernetes.io/version: v11
+  name: emojivoto
+spec:
+  rules:
+  - host: emojivoto.devstg.aws.binbash.com.ar
+    http:
+      paths:
+      - backend:
+          serviceName: web-svc
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - emojivoto.devstg.aws.binbash.com.ar
+    secretName: emojivoto-private-tls
