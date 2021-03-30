@@ -24,7 +24,7 @@ spec:
         - emojivoto-vote-bot
         env:
         - name: WEB_HOST
-          value: web-svc.emojivoto:80
+          value: web-svc:80
         image: docker.l5d.io/buoyantio/emojivoto-web:v11
         name: vote-bot
         resources:
