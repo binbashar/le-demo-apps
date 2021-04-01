@@ -6,6 +6,8 @@ kind: Application
 metadata:
   name: demo-emojivoto
   namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
 
