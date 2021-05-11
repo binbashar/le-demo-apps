@@ -1,0 +1,13 @@
+#
+# EndpointMonitor - Ingress
+#
+endpoint:
+  name: emojivoto-web
+  namespace: demo-emojivoto
+  type: ingress
+  forceHttps: true
+  ingressName: emojivoto
+  provider:
+    name: uptimeRobot
+    interval: 600
+    monitorType: http
