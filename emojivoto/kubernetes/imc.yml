@@ -3,6 +3,10 @@
 #
 kind: EndpointMonitor
 metadata:
+  labels:
+    app.kubernetes.io/name: web
+    app.kubernetes.io/part-of: emojivoto
+    app.kubernetes.io/version: v11
   name: emojivoto-web
   namespace: demo-emojivoto
 spec:
