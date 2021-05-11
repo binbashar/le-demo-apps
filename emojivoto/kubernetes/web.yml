@@ -71,7 +71,7 @@ metadata:
   name: emojivoto
 spec:
   rules:
-  - host: emojivoto.devstg.aws.binbash.com.ar
+  - host: emojivoto.devstg.binbash.com.ar
     http:
       paths:
       - backend:
