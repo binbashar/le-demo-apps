@@ -62,7 +62,7 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
-    kubernetes.io/ingress.class: ingress-nginx-private
+    kubernetes.io/ingress.class: ingress-nginx-public
     kubernetes.io/tls-acme: "true"
   labels:
     app.kubernetes.io/name: web
