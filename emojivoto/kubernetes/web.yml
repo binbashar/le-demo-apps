@@ -55,7 +55,7 @@ spec:
     targetPort: 8080
   selector:
     app: web-svc
-  type: ClusterIP
+  type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
