@@ -1,13 +1,16 @@
 #
 # EndpointMonitor - Ingress
 #
-endpoint:
+kind: EndpointMonitor
+metadata:
   name: emojivoto-web
   namespace: demo-emojivoto
-  type: ingress
+spec:
   forceHttps: true
-  ingressName: emojivoto
-  provider:
-    name: uptimeRobot
+  providers: uptimeRobot
+  uptimeRobotConfig:
     interval: 600
     monitorType: http
+  urlFrom:
+    ingressRef:
+      name: emojivoto
