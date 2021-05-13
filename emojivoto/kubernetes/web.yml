@@ -80,5 +80,5 @@ spec:
         path: /
   tls:
   - hosts:
-    - emojivoto.devstg.aws.binbash.com.ar
+    - emojivoto.devstg.binbash.com.ar
     secretName: emojivoto-private-tls
