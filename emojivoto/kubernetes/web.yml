@@ -61,9 +61,9 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
+  #  cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
     kubernetes.io/ingress.class: ingress-nginx-public
-    kubernetes.io/tls-acme: "true"
+  #  kubernetes.io/tls-acme: "true"
   labels:
     app.kubernetes.io/name: web
     app.kubernetes.io/part-of: emojivoto
@@ -78,7 +78,7 @@ spec:
           serviceName: web-svc
           servicePort: 80
         path: /
-  tls:
-  - hosts:
-    - emojivoto.devstg.binbash.com.ar
-    secretName: emojivoto-private-tls
+#  tls:
+#  - hosts:
+#    - emojivoto.devstg.binbash.com.ar
+#    secretName: emojivoto-private-tls
