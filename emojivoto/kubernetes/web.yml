@@ -61,7 +61,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    #cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
+    cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
     kubernetes.io/ingress.class: ingress-nginx-public
     kubernetes.io/tls-acme: "true"
   labels:
