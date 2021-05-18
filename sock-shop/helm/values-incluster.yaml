@@ -1,0 +1,3 @@
+#
+# Default values for sock-shop deployed fully in-cluster, without external services.
+#
