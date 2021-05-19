@@ -1,3 +1,4 @@
+{{- if .Values.cataloguedb.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -41,3 +42,4 @@ spec:
     targetPort: 3306
   selector:
     name: catalogue-db
+{{- end -}}

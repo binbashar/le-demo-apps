@@ -1,3 +1,23 @@
 #
 # Default values for sock-shop with AWS integration.
 #
+
+catalogue:
+  image: weaveworksdemos/catalogue:0.3.5
+  command: ["/bin/sh"]
+  args: ["-c", "source /vault/secrets/env && rm /vault/secrets/env && echo UUID=$UUID && /app -port=80 -DSN=$DSN"]
+
+  annotations:
+    vault.hashicorp.com/agent-inject: "true"
+    vault.hashicorp.com/namespace: "admin"
+    vault.hashicorp.com/role: "demoapps_sockshop_readonly"
+    vault.hashicorp.com/agent-inject-secret-env: "secrets/data/le-demo-apps/sock-shop/devstg"
+    vault.hashicorp.com/agent-inject-template-env: |
+      {{ with secret "secrets/data/le-demo-apps/sock-shop/devstg" -}}
+        export DSN="{{ .Data.data.DSN }}"
+        export UUID="{{ .Data.data.UUID }}"
+      {{- end }}
+  
+
+cataloguedb:
+  enabled: false

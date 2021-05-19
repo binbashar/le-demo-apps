@@ -13,22 +13,20 @@ spec:
     metadata:
       labels:
         name: catalogue
-      # annotations:
-      #   vault.hashicorp.com/agent-inject: "true"
-      #   vault.hashicorp.com/namespace: "admin"
-      #   vault.hashicorp.com/role: "demoapps_sockshop_readonly"
-      #   vault.hashicorp.com/agent-inject-secret-env: "secrets/data/le-demo-apps/sock-shop/devstg"
-      #   vault.hashicorp.com/agent-inject-template-env: |
-      #     {{ with secret "secrets/data/le-demo-apps/sock-shop/devstg" -}}
-      #       export DSN="{{ .Data.data.DSN }}"
-      #       export UUID="{{ .Data.data.UUID }}"
-      #     {{- end }}
+{{- if .Values.catalogue.annotations }}
+      annotations:
+{{ toYaml .Values.catalogue.annotations | indent 8 }}
+{{- end }}
     spec:
       containers:
       - name: catalogue
-        image: weaveworksdemos/catalogue:0.3.5
-        # command: ["/bin/sh"]
-        # args: ["-c", "source /vault/secrets/env && rm /vault/secrets/env && echo UUID=$UUID && /app -port=80 -DSN=$DSN"]
+        image: {{ .Values.catalogue.image }}
+{{- if .Values.catalogue.command }}
+        command: {{ .Values.catalogue.command }}
+{{- end }}
+{{- if .Values.catalogue.args }}
+        args: {{ .Values.catalogue.args }}
+{{- end }}
         ports:
         - containerPort: 80
         securityContext:
