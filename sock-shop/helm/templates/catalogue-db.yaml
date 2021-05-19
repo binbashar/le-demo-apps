@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,3 +25,19 @@ spec:
         ports:
         - name: mysql
           containerPort: 3306
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalogue-db
+  labels:
+    name: catalogue-db
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 3306
+    targetPort: 3306
+  selector:
+    name: catalogue-db

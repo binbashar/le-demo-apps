@@ -1,23 +1,22 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: carts-db
+  name: user-db
   labels:
-    name: carts-db
+    name: user-db
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: carts-db
+      name: user-db
   template:
     metadata:
       labels:
-        name: carts-db
+        name: user-db
     spec:
       containers:
-      - name: carts-db
-        image: mongo
+      - name: user-db
+        image: weaveworksdemos/user-db:0.4.0
         ports:
         - name: mongo
           containerPort: 27017
@@ -37,3 +36,19 @@ spec:
         - name: tmp-volume
           emptyDir:
             medium: Memory
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-db
+  labels:
+    name: user-db
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 27017
+    targetPort: 27017
+  selector:
+    name: user-db

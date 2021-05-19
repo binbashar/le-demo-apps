@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,3 +29,19 @@ spec:
               - SETUID
               - DAC_OVERRIDE
           readOnlyRootFilesystem: true
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+  labels:
+    name: rabbitmq
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 5672
+    targetPort: 5672
+  selector:
+    name: rabbitmq

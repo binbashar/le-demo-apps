@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-end
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: front-end
+  template:
+    metadata:
+      labels:
+        name: front-end
+    spec:
+      containers:
+      - name: front-end
+        image: weaveworksdemos/front-end:0.3.12
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 8079
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 10001
+          capabilities:
+            drop:
+              - all
+          readOnlyRootFilesystem: true
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-end
+  labels:
+    name: front-end
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8079
+    nodePort: 30001
+  selector:
+    name: front-end
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
+    kubernetes.io/ingress.class: ingress-nginx-private
+    kubernetes.io/tls-acme: "true"
+  name: front-end
+spec:
+  rules:
+  - host: sock-shop.devstg.aws.binbash.com.ar
+    http:
+      paths:
+      - backend:
+          serviceName: front-end
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - sock-shop.devstg.aws.binbash.com.ar
+    secretName: front-end-tls
