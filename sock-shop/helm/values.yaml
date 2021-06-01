@@ -1,0 +1,8 @@
+# Catalogue Service
+catalogue:
+  image: weaveworksdemos/catalogue:0.3.5  
+  annotations: {}
+
+# CatalogueDB
+cataloguedb:
+  enabled: true
