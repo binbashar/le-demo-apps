@@ -18,3 +18,6 @@ Among it's config files you'll find
 
 This Demo Apps are intended to be deployed and properly work in the 
 [Binbash Leverage Reference Architecture for AWS](https://leverage.binbash.com.ar)
+
+### TODO
+- Complete and integrate documentation at [leverage.binbash.com.ar](https://leverage.binbash.com.ar)
