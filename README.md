@@ -16,5 +16,5 @@ Among it's config files you'll find
 - ArgoCD `application.yaml` manifest
 - Helm charts
 
-This Demo Apps are intended to test the 
+This Demo Apps are intended to be deployed and properly work in the 
 [Binbash Leverage Reference Architecture for AWS](https://leverage.binbash.com.ar)
