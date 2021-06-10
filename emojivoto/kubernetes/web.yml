@@ -13,7 +13,9 @@ metadata:
     app.kubernetes.io/version: v11
   name: web
 spec:
-  replicas: 1
+  # This line is commented so that ArgoCD doesn't manage the number of replicas
+  # and instead leaves that to HPA
+  #replicas: 1
   selector:
     matchLabels:
       app: web-svc
@@ -82,3 +84,22 @@ spec:
   - hosts:
     - emojivoto.devstg.aws.binbash.com.ar
     secretName: emojivoto-private-tls
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: web
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: web
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
