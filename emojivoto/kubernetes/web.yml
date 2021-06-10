@@ -13,7 +13,9 @@ metadata:
     app.kubernetes.io/version: v11
   name: web
 spec:
-  replicas: 1
+  # This line is commented so that ArgoCD doesn't manage the number of replicas
+  # and instead leaves that to HPA
+  #replicas: 1
   selector:
     matchLabels:
       app: web-svc
