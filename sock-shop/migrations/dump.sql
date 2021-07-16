@@ -1,6 +1,6 @@
 -- CREATE USER IF NOT EXISTS 'catalogue_user' IDENTIFIED BY 'default_password';
 
-GRANT ALL ON socksdb.* TO 'catalogue_user';
+-- GRANT ALL ON socksdb.* TO 'catalogue_user';
 
 CREATE TABLE IF NOT EXISTS sock (
 	sock_id varchar(40) NOT NULL, 
