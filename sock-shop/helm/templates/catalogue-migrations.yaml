@@ -1,0 +1,44 @@
+{{ if .Values.catalogueMigrations.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: catalogue-migrations-
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+{{ toYaml .Values.catalogueMigrations.annotations | indent 4 }}
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: migrations
+        image: mysql:5.7
+        command: ["/bin/sh"]
+        args: ["/app/migrations.sh"]
+        volumeMounts:
+        - mountPath: /app
+          readOnly: true
+          name: migrations-files
+      volumes:
+      - name: migrations-files
+        configMap:
+          name: catalogue-migrations-files
+          items:
+          - key: migrations.sh
+            path: migrations.sh
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalogue-migrations-files
+data:
+  migrations.sh: |
+    #!/bin/bash
+    # source /vault/secrets/env
+    # echo $DSN
+    printenv
+    mysql --version
+{{ end }}

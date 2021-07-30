@@ -7,7 +7,7 @@ catalogue:
   command: ["/bin/sh"]
   args: ["-c", "source /vault/secrets/env && printenv && /app -port=80 -DSN=$DSN"]
 
-  annotations:
+  annotations: &catalogueAnnotations
     vault.hashicorp.com/agent-inject: "true"
     vault.hashicorp.com/namespace: "admin"
     vault.hashicorp.com/role: "demoapps_sockshop_readonly"
@@ -16,6 +16,10 @@ catalogue:
       {{ with secret "secrets/data/devstg/le-demo-apps/sock-shop" -}}
         export DSN="{{ .Data.data.DSN }}"
       {{- end }}
+
+catalogueMigrations:
+  enabled: true
+  annotations: *catalogueAnnotations
 
 cataloguedb:
   enabled: false
