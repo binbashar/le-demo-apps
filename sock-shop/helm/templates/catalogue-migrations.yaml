@@ -40,8 +40,8 @@ metadata:
 data:
   migrations.sh: |
     #!/bin/bash
-    # source /vault/secrets/env
-    # echo $DSN
+    source /vault/secrets/env
+    echo $DSN
     printenv
     mysql --version
 {{ end }}
