@@ -4,7 +4,7 @@
 
 catalogue:
   image: weaveworksdemos/catalogue:0.3.5
-  command: ["/bin/sh"]
+  command: ["/bin/bash"]
   args: ["-c", "source /vault/secrets/env && printenv && /app -port=80 -DSN=$DSN"]
 
   annotations: &catalogueAnnotations

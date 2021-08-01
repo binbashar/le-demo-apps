@@ -6,17 +6,19 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-{{ toYaml .Values.catalogueMigrations.annotations | indent 4 }}
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 600
   template:
+    metadata:
+      annotations:
+        {{ toYaml .Values.catalogueMigrations.annotations | indent 6 }}
     spec:
       restartPolicy: Never
       containers:
       - name: migrations
         image: mysql:5.7
-        command: ["/bin/sh"]
+        command: ["/bin/bash"]
         args: ["/app/migrations.sh"]
         volumeMounts:
         - mountPath: /app
@@ -41,7 +43,6 @@ data:
   migrations.sh: |
     #!/bin/bash
     source /vault/secrets/env
-    echo $DSN
     printenv
     mysql --version
 {{ end }}
