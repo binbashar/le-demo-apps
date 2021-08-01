@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       annotations:
-        {{ toYaml .Values.catalogueMigrations.annotations | indent 6 }}
+{{ toYaml .Values.catalogueMigrations.annotations | indent 8 }}
     spec:
       restartPolicy: Never
       containers:
