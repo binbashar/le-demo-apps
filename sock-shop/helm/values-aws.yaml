@@ -9,6 +9,7 @@ catalogue:
 
   annotations: &catalogueAnnotations
     vault.hashicorp.com/agent-inject: "true"
+    vault.hashicorp.com/agent-pre-populate-only: "true"
     vault.hashicorp.com/namespace: "admin"
     vault.hashicorp.com/role: "demoapps_sockshop_readonly"
     vault.hashicorp.com/agent-inject-secret-env: "secrets/data/demoapps/devstg/sock-shop"
