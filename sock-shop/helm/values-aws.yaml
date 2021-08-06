@@ -4,8 +4,8 @@
 
 catalogue:
   image: weaveworksdemos/catalogue:0.3.5
-  command: ["/bin/bash"]
-  args: ["-c", "source /vault/secrets/env && printenv && /app -port=80 -DSN=$DSN"]
+  command: ["/bin/sh"]
+  args: ["-c", ". /vault/secrets/env && printenv && /app -port=80 -DSN=$DSN"]
 
   annotations: &catalogueAnnotations
     vault.hashicorp.com/agent-inject: "true"
