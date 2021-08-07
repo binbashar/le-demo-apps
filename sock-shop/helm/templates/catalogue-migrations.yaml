@@ -17,9 +17,11 @@ spec:
       restartPolicy: Never
       containers:
       - name: migrations
-        image: mysql:5.7
-        command: ["/bin/bash"]
-        args: ["/app/migrations.sh"]
+        image: weaveworksdemos/catalogue-db:0.3.0
+        command:
+        - "/bin/bash"
+        args:
+        - "/app/migrations.sh"
         volumeMounts:
         - mountPath: /app
           readOnly: true
@@ -44,5 +46,14 @@ data:
     #!/bin/bash
     source /vault/secrets/env
     printenv
+    cat <<EOF > /docker-entrypoint-initdb.d/my.cnf
+    [client]
+    host=""
+    user=""
+    password=""
+    database=""
+    EOF
+    cat /docker-entrypoint-initdb.d/my.cnf
     mysql --version
+    #mysql --defaults-extra-file=/app/my.cnf < /docker-entrypoint-initdb.d/dump.sql
 {{ end }}

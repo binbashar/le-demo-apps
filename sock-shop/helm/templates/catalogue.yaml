@@ -21,11 +21,12 @@ spec:
       containers:
       - name: catalogue
         image: {{ .Values.catalogue.image }}
-{{- if .Values.catalogue.command }}
-        command: {{ .Values.catalogue.command }}
-{{- end }}
-{{- if .Values.catalogue.args }}
-        args: {{ .Values.catalogue.args }}
+{{ if .Values.catalogueMigrations.enabled }}
+        command:
+        - "/bin/sh"
+        args:
+        - "-c"
+        - ". /vault/secrets/env && printenv && /app -port=80 -DSN=$DSN"
 {{- end }}
         ports:
         - containerPort: 80

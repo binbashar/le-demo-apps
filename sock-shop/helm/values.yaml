@@ -1,8 +1,12 @@
-# Catalogue Service
+# Default values for this service will do
 catalogue:
   image: weaveworksdemos/catalogue:0.3.5  
   annotations: {}
 
-# CatalogueDB
+# Enable the in-cluster DB service that comes with this stack
 cataloguedb:
   enabled: true
+
+# Run migrations -- only needed when using an external mysql service
+catalogueMigrations:
+  enabled: false
