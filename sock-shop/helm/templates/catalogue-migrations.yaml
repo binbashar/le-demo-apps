@@ -48,12 +48,12 @@ data:
     printenv
     cat <<EOF > /docker-entrypoint-initdb.d/my.cnf
     [client]
-    host=""
-    user=""
-    password=""
-    database=""
+    host="$DB_HOST"
+    user="$DB_USER"
+    password="$DB_PASS"
+    database="$DB_NAME"
     EOF
     cat /docker-entrypoint-initdb.d/my.cnf
-    mysql --version
-    #mysql --defaults-extra-file=/app/my.cnf < /docker-entrypoint-initdb.d/dump.sql
+    #while :;do hostname;sleep 15;done
+    mysql --defaults-extra-file=/docker-entrypoint-initdb.d/my.cnf < /docker-entrypoint-initdb.d/dump.sql
 {{ end }}
