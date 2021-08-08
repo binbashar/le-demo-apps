@@ -40,7 +40,7 @@ metadata:
   name: catalogue-migrations-files
   annotations:
     argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 data:
   migrations.sh: |
     #!/bin/bash
@@ -54,6 +54,6 @@ data:
     database="$DB_NAME"
     EOF
     cat /docker-entrypoint-initdb.d/my.cnf
-    #while :;do hostname;sleep 15;done
-    mysql --defaults-extra-file=/docker-entrypoint-initdb.d/my.cnf < /docker-entrypoint-initdb.d/dump.sql
+    while :;do hostname;sleep 15;done
+    #mysql --defaults-extra-file=/docker-entrypoint-initdb.d/my.cnf < /docker-entrypoint-initdb.d/dump.sql
 {{ end }}
