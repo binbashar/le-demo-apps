@@ -55,11 +55,6 @@ data:
     password="$DB_PASS"
     database="$DB_NAME"
     EOF
-    #cat /docker-entrypoint-initdb.d/my.cnf
-    #cp /docker-entrypoint-initdb.d/dump.sql /tmp/
-    #sed -i -e "s/CREATE\sUSER/\-\- CREATE USER/" /tmp/dump.sql
-    #sed -i -e "s/GRANT/\-\- GRANT/" /tmp/dump.sql
-    # while :;do hostname;sleep 15;done
     mysql --defaults-extra-file=/docker-entrypoint-initdb.d/my.cnf < /app/dump.sql
   dump.sql: |
     CREATE TABLE IF NOT EXISTS sock (
