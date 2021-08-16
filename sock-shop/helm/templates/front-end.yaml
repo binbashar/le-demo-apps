@@ -38,11 +38,9 @@ metadata:
   labels:
     name: front-end
 spec:
-  type: NodePort
   ports:
   - port: 80
     targetPort: 8079
-    nodePort: 30001
   selector:
     name: front-end
 ---
@@ -56,7 +54,7 @@ metadata:
   name: front-end
 spec:
   rules:
-  - host: sock-shop.devstg.aws.binbash.com.ar
+  - host: sockshop.devstg.aws.binbash.com.ar
     http:
       paths:
       - backend:
@@ -65,5 +63,5 @@ spec:
         path: /
   tls:
   - hosts:
-    - sock-shop.devstg.aws.binbash.com.ar
+    - sockshop.devstg.aws.binbash.com.ar
     secretName: front-end-tls
