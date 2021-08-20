@@ -54,7 +54,7 @@ metadata:
   name: front-end
 spec:
   rules:
-  - host: sockshop.devstg.aws.binbash.com.ar
+  - host: sockshopapp.devstg.aws.binbash.com.ar
     http:
       paths:
       - backend:
@@ -63,5 +63,5 @@ spec:
         path: /
   tls:
   - hosts:
-    - sockshop.devstg.aws.binbash.com.ar
+    - sockshopapp.devstg.aws.binbash.com.ar
     secretName: front-end-tls
