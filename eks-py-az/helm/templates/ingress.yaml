@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "py-az-ingress"
+  annotations:
+    cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
+    kubernetes.io/ingress.class: ingress-nginx-private
+    kubernetes.io/tls-acme: "true"
+  labels:
+    app: py-az
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+        - backend:
+            serviceName: py-az
+            servicePort: 80
+          path: /
+  tls:
+    - hosts:
+      - {{ .Values.ingress.host }}
+      secretName: py-az-tls
