@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+  labels:
+    app: py-az
+  name: py-az
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 5000
+  type: NodePort
+  selector:
+    app: py-az

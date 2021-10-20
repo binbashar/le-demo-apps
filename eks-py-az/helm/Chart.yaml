@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart for eks-py-az
+name: eks-py-az
+version: 0.1.0

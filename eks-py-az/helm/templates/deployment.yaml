@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: py-az
+  name: py-az
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: py-az
+  template:
+    metadata:
+      labels:
+        app: py-az
+    spec:
+      containers:
+      - image: public.ecr.aws/b5x3e7x1/eks-py-az
+        name: eks-py-az
+        ports:
+        - containerPort: 5000
+          protocol: TCP
