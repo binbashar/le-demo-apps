@@ -1,2 +1,15 @@
 ingress:
-  host: testapp.us-east-1.devstg.aws.binbash.com.ar
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
+    kubernetes.io/ingress.class: ingress-nginx-private
+    kubernetes.io/tls-acme: "true"
+  paths: ['/']
+  hosts:
+    - testapp.us-east-1.devstg.aws.binbash.com.ar
+    - testapp.devstg.aws.binbash.com.ar
+  tls:
+    - secretName: py-az-tls
+      hosts:
+        - testapp.us-east-1.devstg.aws.binbash.com.ar
+        - testapp.devstg.aws.binbash.com.ar

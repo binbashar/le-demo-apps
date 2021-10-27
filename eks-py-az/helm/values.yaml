@@ -1,2 +1,10 @@
 ingress:
-  host: test.example.com
+  enabled: true
+  annotations: {}
+  paths: ['/']
+  hosts:
+    - test.example.com
+  tls:
+    - secretName: py-az-tls
+      hosts:
+        - test.example.com
