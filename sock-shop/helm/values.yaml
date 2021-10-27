@@ -1,7 +1,33 @@
-# Default values for this service will do
+carts:
+  image: weaveworksdemos/carts:0.4.8
+
+catalogue-db:
+  image: weaveworksdemos/catalogue-db:0.3.0
+
 catalogue:
   image: weaveworksdemos/catalogue:0.3.5  
   annotations: {}
+
+front-end:
+  image: weaveworksdemos/front-end:0.3.12
+
+orders:
+  image: weaveworksdemos/orders:0.4.7
+
+payment:
+  image: weaveworksdemos/payment:0.4.3
+
+queue-master:
+  image: weaveworksdemos/queue-master:0.3.1
+
+shipping:
+  image: weaveworksdemos/shipping:0.4.8
+
+user-db:
+  image: weaveworksdemos/user-db:0.4.0
+
+user:
+  image: weaveworksdemos/user:0.4.7
 
 # Enable the in-cluster DB service that comes with this stack
 cataloguedb:
