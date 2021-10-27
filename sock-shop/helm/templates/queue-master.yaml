@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: queue-master
-        image: weaveworksdemos/queue-master:0.3.1
+        image: {{ index .Values "queue-master" "image" }}
         ports:
         - containerPort: 80
       nodeSelector:
