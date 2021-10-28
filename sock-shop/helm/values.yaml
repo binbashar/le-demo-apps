@@ -2,6 +2,7 @@ carts:
   image: weaveworksdemos/carts:0.4.8
 
 cataloguedb:
+  enabled: true
   image: weaveworksdemos/catalogue-db:0.3.0
 
 catalogue:
@@ -41,11 +42,7 @@ userdb:
 
 user:
   image: weaveworksdemos/user:0.4.7
-
-# Enable the in-cluster DB service that comes with this stack
-cataloguedb:
-  enabled: true
-
+  
 # Run migrations -- only needed when using an external mysql service
 cataloguemigrations:
   enabled: false
