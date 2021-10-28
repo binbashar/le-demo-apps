@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: user-db
-        image: {{ index .Values "user-db" "image" }}
+        image: {{ .Values.userdb.image }}
         ports:
         - name: mongo
           containerPort: 27017
