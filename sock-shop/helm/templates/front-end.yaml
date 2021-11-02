@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: front-end
-        image: {{ index .Values "front-end" "image" }}
+        image: {{ .Values.frontend.image }}
         resources:
           requests:
             cpu: 100m
@@ -44,24 +44,37 @@ spec:
   selector:
     name: front-end
 ---
-apiVersion: extensions/v1beta1
+{{- if .Values.frontend.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
-    kubernetes.io/ingress.class: ingress-nginx-private
-    kubernetes.io/tls-acme: "true"
+    {{- with .Values.frontend.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   name: front-end
 spec:
-  rules:
-  - host: sockshopapp.devstg.aws.binbash.com.ar
-    http:
-      paths:
-      - backend:
-          serviceName: front-end
-          servicePort: 80
-        path: /
+{{- if .Values.frontend.ingress.tls }}
   tls:
-  - hosts:
-    - sockshopapp.devstg.aws.binbash.com.ar
-    secretName: front-end-tls
+  {{- range .Values.frontend.ingress.tls }}
+    - hosts:
+      {{- range .hosts }}
+        - {{ . | quote }}
+      {{- end }}
+      secretName: {{ .secretName }}
+  {{- end }}
+{{- end }}
+  rules:
+  {{- range .Values.frontend.ingress.hosts }}
+    - host: {{ . | quote }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: front-end
+                port:
+                  number: 80
+  {{- end }}
+{{- end }}

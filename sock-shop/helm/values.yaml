@@ -1,15 +1,29 @@
 carts:
   image: weaveworksdemos/carts:0.4.8
 
-catalogue-db:
+cataloguedb:
+  enabled: true
   image: weaveworksdemos/catalogue-db:0.3.0
 
 catalogue:
   image: weaveworksdemos/catalogue:0.3.5  
   annotations: {}
 
-front-end:
+frontend:
   image: weaveworksdemos/front-end:0.3.12
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
+      kubernetes.io/ingress.class: ingress-nginx-private
+      kubernetes.io/tls-acme: "true"
+    paths: ['/']
+    hosts:
+      - sockshopapp.devstg.aws.binbash.com.ar
+    tls:
+      - secretName: front-end-tls
+        hosts:
+          - sockshopapp.devstg.aws.binbash.com.ar
 
 orders:
   image: weaveworksdemos/orders:0.4.7
@@ -17,22 +31,18 @@ orders:
 payment:
   image: weaveworksdemos/payment:0.4.3
 
-queue-master:
+queuemaster:
   image: weaveworksdemos/queue-master:0.3.1
 
 shipping:
   image: weaveworksdemos/shipping:0.4.8
 
-user-db:
+userdb:
   image: weaveworksdemos/user-db:0.4.0
 
 user:
   image: weaveworksdemos/user:0.4.7
-
-# Enable the in-cluster DB service that comes with this stack
-cataloguedb:
-  enabled: true
-
+  
 # Run migrations -- only needed when using an external mysql service
-catalogueMigrations:
+cataloguemigrations:
   enabled: false

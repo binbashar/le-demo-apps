@@ -21,7 +21,7 @@ catalogue:
       {{- end }}
 
 # Run migrations -- we will use an external mysql service (RDS)
-catalogueMigrations:
+cataloguemigrations:
   enabled: true
   annotations: *catalogueAnnotations
 

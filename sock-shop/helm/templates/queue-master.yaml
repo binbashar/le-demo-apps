@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: queue-master
-        image: {{ index .Values "queue-master" "image" }}
+        image: {{ .Values.queuemaster.image }}
         ports:
         - containerPort: 80
       nodeSelector:

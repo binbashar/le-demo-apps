@@ -21,7 +21,7 @@ spec:
       containers:
       - name: catalogue
         image: {{ .Values.catalogue.image }}
-{{ if .Values.catalogueMigrations.enabled }}
+{{ if .Values.cataloguemigrations.enabled }}
         command:
         - "/bin/sh"
         args:

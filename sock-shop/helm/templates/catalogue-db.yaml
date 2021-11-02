@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: catalogue-db
-        image: {{ index .Values "catalogue-db" "image" }}
+        image: {{ .Values.cataloguedb.image }}
         env:
           - name: MYSQL_ROOT_PASSWORD
             value: fake_password
