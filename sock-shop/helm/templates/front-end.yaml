@@ -44,7 +44,7 @@ spec:
   selector:
     name: front-end
 ---
-{{- if .Values.frontend.ingress.enabled -}}
+{{- if .Values.frontend.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
