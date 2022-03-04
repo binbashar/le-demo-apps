@@ -10,7 +10,7 @@ metadata:
   labels:
     app.kubernetes.io/name: web
     app.kubernetes.io/part-of: emojivoto
-    app.kubernetes.io/version: v12
+    app.kubernetes.io/version: v11
   name: web
 spec:
   # This line is commented so that ArgoCD doesn't manage the number of replicas
@@ -19,12 +19,12 @@ spec:
   selector:
     matchLabels:
       app: web-svc
-      version: v12
+      version: v11
   template:
     metadata:
       labels:
         app: web-svc
-        version: v12
+        version: v11
     spec:
       containers:
       - env:
@@ -69,7 +69,7 @@ metadata:
   labels:
     app.kubernetes.io/name: web
     app.kubernetes.io/part-of: emojivoto
-    app.kubernetes.io/version: v12
+    app.kubernetes.io/version: v11
   name: emojivoto
 spec:
   rules:
