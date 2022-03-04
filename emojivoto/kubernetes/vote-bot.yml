@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/version: v11
   name: vote-bot
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: vote-bot
