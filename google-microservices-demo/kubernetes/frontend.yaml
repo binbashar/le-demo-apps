@@ -113,7 +113,7 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
-    kubernetes.io/ingress.class: ingress-nginx-private
+    kubernetes.io/ingress.class: private-apps
     kubernetes.io/tls-acme: "true"
   name: frontend
 spec:
