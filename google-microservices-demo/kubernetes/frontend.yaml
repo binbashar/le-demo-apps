@@ -122,8 +122,10 @@ spec:
     http:
       paths:
       - backend:
-          service.name: frontend
-          service.port.number: 80
+          service:
+            name: frontend
+            port:
+              number: 80
         path: /
   tls:
   - hosts:
