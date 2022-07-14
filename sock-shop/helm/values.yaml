@@ -6,7 +6,7 @@ cataloguedb:
   image: weaveworksdemos/catalogue-db:0.3.0
 
 catalogue:
-  image: weaveworksdemos/catalogue:0.3.5  
+  image: weaveworksdemos/catalogue:0.3.5
   annotations: {}
 
 frontend:
@@ -15,7 +15,7 @@ frontend:
     enabled: true
     annotations:
       cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
-      kubernetes.io/ingress.class: ingress-nginx-private
+      kubernetes.io/ingress.class: private-apps
       kubernetes.io/tls-acme: "true"
     paths: ['/']
     hosts:
@@ -42,7 +42,7 @@ userdb:
 
 user:
   image: weaveworksdemos/user:0.4.7
-  
+
 # Run migrations -- only needed when using an external mysql service
 cataloguemigrations:
   enabled: false
