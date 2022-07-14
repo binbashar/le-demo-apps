@@ -25,11 +25,12 @@ spec:
     - host: {{ . | quote }}
       http:
         paths:
-          - path: /
-            backend:
-              service:
-                name: py-az
-                port:
-                  number: 80
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: py-az
+              port:
+                number: 80
   {{- end }}
 {{- end }}

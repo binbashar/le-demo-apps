@@ -59,12 +59,13 @@ spec:
   - host: sock-shop.devstg.aws.binbash.com.ar
     http:
       paths:
-      - backend:
+      - path: /
+        pathType: Prefix
+        backend:
           service:
             name: front-end
             port:
               number: 80
-        path: /
   tls:
   - hosts:
     - sock-shop.devstg.aws.binbash.com.ar
