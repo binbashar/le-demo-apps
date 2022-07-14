@@ -76,12 +76,13 @@ spec:
   - host: emojivoto.devstg.aws.binbash.com.ar
     http:
       paths:
-      - backend:
+      - path: /
+        pathType: Prefix
+        backend:
           service:
             name: web-svc
             port:
               number: 80
-        path: /
   tls:
   - hosts:
     - emojivoto.devstg.aws.binbash.com.ar
