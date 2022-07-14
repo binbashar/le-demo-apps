@@ -27,7 +27,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: py-az
-              servicePort: 80
+              service.name: py-az
+              service.port.number: 80
   {{- end }}
 {{- end }}

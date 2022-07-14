@@ -60,8 +60,8 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: front-end
-          servicePort: 80
+          service.name: front-end
+          service.port.number: 80
         path: /
   tls:
   - hosts:
