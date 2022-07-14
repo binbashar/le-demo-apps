@@ -77,8 +77,8 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: web-svc
-          servicePort: 80
+          service.name: web-svc
+          service.port.number: 80
         path: /
   tls:
   - hosts:
