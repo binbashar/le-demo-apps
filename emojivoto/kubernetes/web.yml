@@ -36,6 +36,11 @@ spec:
           value: voting-svc:8080
         - name: INDEX_BUNDLE
           value: dist/index_bundle.js
+        - name: EMOJI_SECRET_VALUE
+          valueFrom:
+            secretKeyRef:
+              name: emoji-voto-secrets
+              key: emoji-voto-secret
         image: docker.l5d.io/buoyantio/emojivoto-web:v11
         name: web-svc
         ports:
