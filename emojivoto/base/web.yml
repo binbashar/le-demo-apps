@@ -15,7 +15,7 @@ metadata:
 spec:
   # When using HPA, this line must be commented so that ArgoCD doesn't manage
   # the number of replicas and instead leaves that to HPA
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: web-svc
