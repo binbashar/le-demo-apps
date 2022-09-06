@@ -91,7 +91,7 @@ metadata:
   name: emojivoto
 spec:
   rules:
-  - host: emojivoto.devstg.aws.binbash.com.ar
+  - host: emojivotorollouts.devstg.aws.binbash.com.ar
     http:
       paths:
       - path: /
@@ -103,7 +103,7 @@ spec:
               number: 80
   tls:
   - hosts:
-    - emojivoto.devstg.aws.binbash.com.ar
+    - emojivotorollouts.devstg.aws.binbash.com.ar
     secretName: emojivoto-private-tls
 ---
 # apiVersion: autoscaling/v2beta2
