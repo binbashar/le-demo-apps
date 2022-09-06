@@ -98,7 +98,17 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: web-svc
+            name: web-svc-active
+            port:
+              number: 80
+  - host: emojivotorollouts-preview.devstg.aws.binbash.com.ar
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-svc-preview
             port:
               number: 80
   tls:
