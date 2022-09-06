@@ -4,8 +4,8 @@ kind: ServiceAccount
 metadata:
   name: web
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   labels:
     app.kubernetes.io/name: web
@@ -45,6 +45,11 @@ spec:
           requests:
             cpu: 100m
       serviceAccountName: web
+  strategy:
+    blueGreen: 
+      activeService: web-svc-active
+      previewService: web-svc-preview
+      autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service

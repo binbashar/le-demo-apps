@@ -4,8 +4,8 @@ kind: ServiceAccount
 metadata:
   name: voting
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   labels:
     app.kubernetes.io/name: voting
@@ -41,6 +41,11 @@ spec:
           requests:
             cpu: 100m
       serviceAccountName: voting
+  strategy:
+    blueGreen: 
+      activeService: voting-svc-active
+      previewService: voting-svc-preview
+      autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service

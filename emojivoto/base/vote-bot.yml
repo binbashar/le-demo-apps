@@ -1,6 +1,6 @@
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   labels:
     app.kubernetes.io/name: vote-bot
@@ -30,3 +30,8 @@ spec:
         resources:
           requests:
             cpu: 10m
+  strategy:
+    blueGreen: 
+      activeService: vote-bot-active
+      previewService: vote-bot-preview
+      autoPromotionEnabled: false

@@ -4,8 +4,8 @@ kind: ServiceAccount
 metadata:
   name: emoji
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   labels:
     app.kubernetes.io/name: emoji
@@ -41,6 +41,11 @@ spec:
           requests:
             cpu: 100m
       serviceAccountName: emoji
+    strategy:
+      blueGreen: 
+        activeService: emoji-svc-active
+        previewService: emoji-svc-preview
+        autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service
