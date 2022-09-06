@@ -1,5 +1,4 @@
 resources:
 - emoji-api.yml
-- vote-bot.yml
 - voting-api.yml
 - web.yml
