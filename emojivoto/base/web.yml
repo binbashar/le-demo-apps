@@ -54,7 +54,20 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-svc
+  name: web-svc-active
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: web-svc
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc-preview
 spec:
   ports:
   - name: http

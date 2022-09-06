@@ -50,7 +50,22 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: voting-svc
+  name: voting-svc-active
+spec:
+  ports:
+  - name: grpc
+    port: 8080
+    targetPort: 8080
+  - name: prom
+    port: 8801
+    targetPort: 8801
+  selector:
+    app: voting-svc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: voting-svc-preview
 spec:
   ports:
   - name: grpc
