@@ -41,11 +41,11 @@ spec:
           requests:
             cpu: 100m
       serviceAccountName: emoji
-    strategy:
-      blueGreen: 
-        activeService: emoji-svc-active
-        previewService: emoji-svc-preview
-        autoPromotionEnabled: false
+  strategy:
+    blueGreen: 
+      activeService: emoji-svc-active
+      previewService: emoji-svc-preview
+      autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service
