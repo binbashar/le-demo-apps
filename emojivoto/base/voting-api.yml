@@ -36,7 +36,7 @@ spec:
           value: "8080"
         - name: PROM_PORT
           value: "8801"
-        image: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps:emojivoto-voting-svc-v1
+        image: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/voting-svc:v1
         name: voting-svc
         ports:
         - containerPort: 8080
