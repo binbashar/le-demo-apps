@@ -10,7 +10,7 @@ metadata:
   labels:
     app.kubernetes.io/name: web
     app.kubernetes.io/part-of: emojivoto
-    app.kubernetes.io/version: v3
+    app.kubernetes.io/version: v1
   name: web
 spec:
   # When using HPA, this line must be commented so that ArgoCD doesn't manage
@@ -19,12 +19,18 @@ spec:
   selector:
     matchLabels:
       app: web-svc
-      version: v3
+      version: v1
+  strategy:
+    blueGreen: 
+      activeService: web-svc-active
+      previewService: web-svc-preview
+      previewReplicaCount: 1
+      autoPromotionEnabled: false
   template:
     metadata:
       labels:
         app: web-svc
-        version: v3
+        version: v1
     spec:
       containers:
       - name: web-svc
@@ -37,7 +43,7 @@ spec:
           value: voting-svc:8080
         - name: INDEX_BUNDLE
           value: dist/index_bundle.js
-        image: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps:emojivoto-web-v3
+        image: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps:emojivoto-web-v1
         ports:
         - containerPort: 8080
           name: http
@@ -45,11 +51,6 @@ spec:
           requests:
             cpu: 100m
       serviceAccountName: web
-  strategy:
-    blueGreen: 
-      activeService: web-svc-active
-      previewService: web-svc-preview
-      autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service

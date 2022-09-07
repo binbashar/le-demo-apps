@@ -1,6 +1,8 @@
 bases:
-- ../../base
+  - ../../base
+
 patches:
-- replicas.yml
+  - replicas.yml
+
 patchesStrategicMerge:
-- env.yml
+  - env.yml
