@@ -13,7 +13,7 @@ metadata:
     app.kubernetes.io/version: v1
   name: emoji
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: emoji-svc

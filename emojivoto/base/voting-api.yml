@@ -13,7 +13,7 @@ metadata:
     app.kubernetes.io/version: v1
   name: voting
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: voting-svc
