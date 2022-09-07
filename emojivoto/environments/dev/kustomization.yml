@@ -6,3 +6,11 @@ patches:
 
 patchesStrategicMerge:
   - env.yml
+
+images:
+  - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/web
+    newTag: v2
+  - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/emoji-svc
+    newTag: v2
+  - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/vote-svc
+    newTag: v2
