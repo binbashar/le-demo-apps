@@ -114,6 +114,7 @@ spec:
   tls:
   - hosts:
     - emojivotorollouts.devstg.aws.binbash.com.ar
+    - emojivotorollouts-preview.devstg.aws.binbash.com.ar
     secretName: emojivoto-private-tls
 ---
 # apiVersion: autoscaling/v2beta2
