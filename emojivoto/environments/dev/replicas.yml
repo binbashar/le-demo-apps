@@ -3,4 +3,4 @@ kind: Rollout
 metadata:
   name: web
 spec:
-  replicas: 2
+  replicas: 4
