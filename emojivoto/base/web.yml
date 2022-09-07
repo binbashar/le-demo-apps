@@ -27,7 +27,8 @@ spec:
         version: v1
     spec:
       containers:
-      - env:
+      - name: web-svc
+        env:
         - name: WEB_PORT
           value: "8080"
         - name: EMOJISVC_HOST
@@ -37,7 +38,6 @@ spec:
         - name: INDEX_BUNDLE
           value: dist/index_bundle.js
         image: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps:emojivoto-web-v2
-        name: web-svc
         ports:
         - containerPort: 8080
           name: http
