@@ -11,3 +11,11 @@ resources:
   - emoji-api.yml
   - voting-api.yml
   - web.yml
+
+images:
+  - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/web
+    newTag: v1
+  - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/emoji-svc
+    newTag: v1
+  - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/vote-svc
+    newTag: v1
