@@ -1,16 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 bases:
   - ../../base
 
 patches:
   - replicas.yml
-
-patchesStrategicMerge:
   - env.yml
 
 images:
-  - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/web
+  - name: web-image
+    newName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/web
     newTag: v1
-  - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/emoji-svc
+  - name: emoji-svc-image
+    newName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/emoji-svc
     newTag: v1
-  - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/vote-svc
+  - name: voting-svc-image
+    mewName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/vote-svc
     newTag: v1
