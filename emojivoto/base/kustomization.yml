@@ -20,5 +20,5 @@ images:
     newName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/emoji-svc
     newTag: v1
   - name: voting-svc-image
-    newName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/vote-svc
+    newName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/voting-svc
     newTag: v1
