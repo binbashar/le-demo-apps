@@ -30,23 +30,23 @@ spec:
         app: voting-svc
         version: v1
     spec:
+      serviceAccountName: voting
       containers:
-      - env:
-        - name: GRPC_PORT
-          value: "8080"
-        - name: PROM_PORT
-          value: "8801"
-        image: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/voting-svc:v1
-        name: voting-svc
+      - name: voting-svc
+        image: voting-svc-image
+        resources:
+          requests:
+            cpu: 100m
         ports:
         - containerPort: 8080
           name: grpc
         - containerPort: 8801
           name: prom
-        resources:
-          requests:
-            cpu: 100m
-      serviceAccountName: voting
+        env:
+        - name: GRPC_PORT
+          value: "8080"
+        - name: PROM_PORT
+          value: "8801"
 ---
 apiVersion: v1
 kind: Service

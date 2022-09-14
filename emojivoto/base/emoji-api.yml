@@ -31,21 +31,21 @@ spec:
         version: v1
     spec:
       containers:
-      - env:
-        - name: GRPC_PORT
-          value: "8080"
-        - name: PROM_PORT
-          value: "8801"
-        image: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/emoji-svc:v1
-        name: emoji-svc
+      - name: emoji-svc
+        image: emoji-svc-image
+        resources:
+          requests:
+            cpu: 100m
         ports:
         - containerPort: 8080
           name: grpc
         - containerPort: 8801
           name: prom
-        resources:
-          requests:
-            cpu: 100m
+        env:
+        - name: GRPC_PORT
+          value: "8080"
+        - name: PROM_PORT
+          value: "8801"
       serviceAccountName: emoji
 ---
 apiVersion: v1
