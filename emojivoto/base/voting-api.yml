@@ -33,7 +33,7 @@ spec:
       serviceAccountName: voting
       containers:
       - name: voting-svc
-        image: voting-svc-image
+        image: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/voting-svc:v1
         resources:
           requests:
             cpu: 100m
