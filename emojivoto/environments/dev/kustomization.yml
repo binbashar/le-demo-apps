@@ -1,20 +1,23 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 bases:
-  - ../../base
-
+- ../../base
 patches:
-  - replicas.yml
-  - env.yml
-
+- replicas.yml
+- env.yml
 images:
-  - name: web-image
-    newName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/web
-    newTag: v1
-  - name: emoji-svc-image
-    newName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/emoji-svc
-    newTag: v1
-  - name: voting-svc-image
-    newName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/voting-svc
-    newTag: v1
+- name: web-image
+  newName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/web
+  newTag: v1
+- name: emoji-svc-image
+  newName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/emoji-svc
+  newTag: v1
+- name: voting-svc-image
+  newName: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/voting-svc
+  newTag: v1
+- name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/web
+  newTag: v2
+- name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/voting-svc
+  newTag: v2
+- name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/demo-apps/emoji-svc
+  newTag: v2
