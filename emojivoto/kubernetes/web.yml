@@ -40,10 +40,12 @@ spec:
           valueFrom:
             secretKeyRef:
               name: test-secret
+              key: SecretSecret
         - name: EMOJI_PARAMETER_VALUE
           valueFrom:
             secretKeyRef:
               name: test-parameter
+              key: SecretParameter
         image: docker.l5d.io/buoyantio/emojivoto-web:v11
         name: web-svc
         ports:
