@@ -11,9 +11,9 @@ spec:
     namespace: demo-client
   project: default
   source:
-    repoURL: https://github.com/binbashar/le-demo-apps
-    path: argocd/app-of-apps
+    repoURL: git@github.com:binbashar/le-demo-apps.git
     targetRevision: argocd
+    path: argocd/app-of-apps
   syncPolicy:
     automated:
       prune: true
