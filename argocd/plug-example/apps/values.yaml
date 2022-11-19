@@ -1,0 +1,22 @@
+#
+# Non-root Applications: Global Settings
+#
+global:
+  prefix: plug
+  namespace: argocd
+
+  destination:
+    namespace: plug
+
+  source:
+    repoURL: https://github.com/binbashar/le-demo-apps
+    targetRevision: HEAD
+
+#
+# Root Application: Settings
+#
+rootApp:
+  source:
+    repoURL: https://github.com/binbashar/le-demo-apps
+    targetRevision: argocd
+    path: argocd/plug-example/apps

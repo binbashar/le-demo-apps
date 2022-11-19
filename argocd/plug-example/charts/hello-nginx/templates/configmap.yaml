@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-conf
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head><title>{{ .Values.title }}</title></head>
+    <body>
+    <h1>{{ .Values.message }}</h1>
+    </body>
+    </html>

@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .Values.global.prefix }}-default
+  namespace: {{ .Values.global.namespace }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  description: "ArgoCD Project for {{ .Values.global.prefix }}"
+
+  sourceRepos:
+  - '*'
+
+  destinations:
+  - namespace: {{ .Values.global.destination.namespace }}
+    server: '*'
+
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'

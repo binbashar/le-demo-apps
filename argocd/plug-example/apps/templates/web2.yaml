@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.global.prefix }}-web2
+  namespace: {{ .Values.global.namespace }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ .Values.global.destination.namespace }}
+  project: {{ .Values.global.prefix }}-default
+  source:
+    repoURL: {{ .Values.global.source.repoURL }}
+    targetRevision: {{ .Values.global.source.targetRevision }}
+    path: argocd/plug-example/charts/hello-nginx
+    # helm:
+    #   valueFiles:
+    #   - ../../config/apps/web2/values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - "CreateNamespace=true"
+    - "Prune=true"
