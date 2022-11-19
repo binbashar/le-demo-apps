@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: {{ .Values.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: {{ .Values.name }}
   template:
     metadata:
       labels:
-        app: nginx
+        app: {{ .Values.name }}
     spec:
       containers:
       - name: nginx
@@ -20,11 +20,11 @@ spec:
         volumeMounts:
         - mountPath: /usr/share/nginx/html
           readOnly: true
-          name: nginx-conf
+          name: config
       volumes:
-      - name: nginx-conf
+      - name: config
         configMap:
-          name: nginx-conf
+          name: {{ .Values.name }}
           items:
           - key: index.html
             path: index.html

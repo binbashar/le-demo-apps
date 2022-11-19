@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: {{ .Values.name }}
 spec:
   type: ClusterIP
   ports:
@@ -10,4 +10,4 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: nginx
+    app: {{ .Values.name }}
