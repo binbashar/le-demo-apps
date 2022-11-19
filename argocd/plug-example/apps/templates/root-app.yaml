@@ -14,10 +14,10 @@ spec:
     repoURL: {{ .Values.rootApp.source.repoURL }}
     targetRevision: {{ .Values.rootApp.source.targetRevision }}
     path: {{ .Values.rootApp.source.path }}
-  # syncPolicy:
-  #   automated:
-  #     prune: true
-  #     selfHeal: true
-  #   syncOptions:
-  #   - "CreateNamespace=true"
-  #   - "Prune=true"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - "CreateNamespace=true"
+    - "Prune=true"
