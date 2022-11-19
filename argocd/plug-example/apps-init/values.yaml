@@ -3,6 +3,6 @@ global:
   namespace: argocd
 
 secret:
-  path: "secrets-v1/devops-tf-infra/apps-default/k8s-eks/plug"
-  version: "1"
+  path: secrets-v1/devops-tf-infra/apps-default/k8s-eks/plug
+  version: 1
   namespace: plug
