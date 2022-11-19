@@ -10,7 +10,7 @@ global:
 
   source:
     repoURL: https://github.com/binbashar/le-demo-apps
-    targetRevision: HEAD
+    targetRevision: argocd
 
 #
 # Root Application: Settings
