@@ -3,7 +3,7 @@
 #
 global:
   prefix: plug
-  namespace: argocd
+  namespace: default
 
   destination:
     namespace: plug
