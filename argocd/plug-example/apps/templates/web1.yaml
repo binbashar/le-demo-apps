@@ -16,6 +16,8 @@ spec:
     path: argocd/plug-example/charts/hello-nginx
     helm:
       parameters:
+      - name: name
+        value: web1
       - name: title
         value: "Nginx"
       - name: message
