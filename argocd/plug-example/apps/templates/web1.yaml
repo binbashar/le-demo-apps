@@ -22,10 +22,10 @@ spec:
         value: "Nginx"
       - name: message
         value: "Hello from Web1"
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-    - "CreateNamespace=true"
-    - "Prune=true"
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
+  #   syncOptions:
+  #   - "CreateNamespace=true"
+  #   - "Prune=true"

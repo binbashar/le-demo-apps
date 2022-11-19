@@ -17,10 +17,10 @@ spec:
     # helm:
     #   valueFiles:
     #   - ../../config/apps/web2/values.yaml
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-    - "CreateNamespace=true"
-    - "Prune=true"
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
+  #   syncOptions:
+  #   - "CreateNamespace=true"
+  #   - "Prune=true"
