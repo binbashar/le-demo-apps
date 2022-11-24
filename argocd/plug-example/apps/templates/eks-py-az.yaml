@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: {{ .Values.global.source.repoURL }}
     targetRevision: {{ .Values.global.source.targetRevision }}
-    path: eks-py-az
+    path: eks-py-az/helm
   syncPolicy:
     automated:
       prune: true
