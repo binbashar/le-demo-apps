@@ -73,7 +73,7 @@ metadata:
   name: emojivoto
 spec:
   rules:
-  - host: emojivoto.devstg.aws.binbash.com.ar
+  - host: emojivoto.demo.devstg.internal.aws.celes.ai
     http:
       paths:
       - path: /
@@ -85,7 +85,7 @@ spec:
               number: 80
   tls:
   - hosts:
-    - emojivoto.devstg.aws.binbash.com.ar
+    - emojivoto.demo.devstg.internal.aws.celes.ai
     secretName: emojivoto-private-tls
 ---
 # apiVersion: autoscaling/v2beta2
