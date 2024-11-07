@@ -1,0 +1,106 @@
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: voting
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: voting
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voting-svc
+  strategy:
+    blueGreen: 
+      activeService: voting-svc
+      previewService: voting-svc-preview
+      previewReplicaCount: 1
+  template:
+    metadata:
+      labels:
+        app: voting-svc
+    spec:
+      serviceAccountName: voting
+      containers:
+      - name: voting-svc
+        image: 763606934258.dkr.ecr.us-east-1.amazonaws.com/emojivoto-voting-svc:tag
+        env:
+        - name: GRPC_PORT
+          value: "8080"
+        - name: PROM_PORT
+          value: "8801"
+        ports:
+        - containerPort: 8080
+          name: grpc
+        - containerPort: 8801
+          name: prom
+        resources:
+          requests:
+            cpu: 100m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: voting-svc
+spec:
+  ports:
+  - name: grpc
+    port: 8080
+    targetPort: 8080
+  - name: prom
+    port: 8801
+    targetPort: 8801
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: voting-svc-preview
+spec:
+  ports:
+  - name: grpc
+    port: 8080
+    targetPort: 8080
+  - name: prom
+    port: 8801
+    targetPort: 8801
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
+    kubernetes.io/ingress.class: private-apps
+    kubernetes.io/tls-acme: "true"
+  labels:
+    app.kubernetes.io/name: voting-svc
+    app.kubernetes.io/part-of: voting-svc
+  name: voting-svc-ingress
+spec:
+  rules:
+  - host: voting.demo.devstg.aws.binbash.com.ar
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: voting-svc
+            port:
+              number: 8080
+  - host: preview.voting.demo.devstg.aws.binbash.com.ar
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: voting-svc-preview
+            port:
+              number: 8080
+  tls:
+  - hosts:
+    - voting.demo.devstg.aws.binbash.com.ar
+    - preview.voting.demo.devstg.aws.binbash.com.ar
+    secretName: voting-svc-private-tls

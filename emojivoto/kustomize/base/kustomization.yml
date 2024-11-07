@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: emojivoto
+
+configurations:
+- https://argoproj.github.io/argo-rollouts/features/kustomize/rollout-transform.yaml
+
+openapi:
+  path: https://raw.githubusercontent.com/argoproj/argo-schema-generator/main/schema/argo_all_k8s_kustomize_schema.json
+
+resources:
+- web.yml
+- emoji.yml
+- voting.yml
+- vote-bot.yml
