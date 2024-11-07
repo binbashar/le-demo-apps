@@ -19,13 +19,13 @@ patches:
       path: /spec/rules/0/host
       value: emoji.demo.devstg.aws.binbash.com.ar
     - op: replace
-      path: /spec/tls/0/host
+      path: /spec/tls/0/hosts/0
       value: emoji.demo.devstg.aws.binbash.com.ar
     - op: replace
       path: /spec/rules/1/host
       value: preview.emoji.demo.devstg.aws.binbash.com.ar
     - op: replace
-      path: /spec/tls/1/host
+      path: /spec/tls/0/hosts/1
       value: preview.emoji.demo.devstg.aws.binbash.com.ar
 - target:
     kind: Ingress
@@ -35,13 +35,13 @@ patches:
       path: /spec/rules/0/host
       value: voting.demo.devstg.aws.binbash.com.ar
     - op: replace
-      path: /spec/tls/0/host
+      path: /spec/tls/0/hosts/0
       value: voting.demo.devstg.aws.binbash.com.ar
     - op: replace
       path: /spec/rules/1/host
       value: preview.voting.demo.devstg.aws.binbash.com.ar
     - op: replace
-      path: /spec/tls/1/host
+      path: /spec/tls/0/hosts/1
       value: preview.voting.demo.devstg.aws.binbash.com.ar
 - target:
     kind: Ingress
@@ -51,13 +51,13 @@ patches:
       path: /spec/rules/0/host
       value: web.demo.devstg.aws.binbash.com.ar
     - op: replace
-      path: /spec/tls/0/host
+      path: /spec/tls/0/hosts/0
       value: web.demo.devstg.aws.binbash.com.ar
     - op: replace
       path: /spec/rules/1/host
       value: preview.web.demo.devstg.aws.binbash.com.ar
     - op: replace
-      path: /spec/tls/1/host
+      path: /spec/tls/0/hosts/1
       value: preview.web.demo.devstg.aws.binbash.com.ar
 images:
 - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/emojivoto-emoji-svc
