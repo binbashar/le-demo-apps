@@ -7,7 +7,7 @@ configurations:
 - https://argoproj.github.io/argo-rollouts/features/kustomize/rollout-transform.yaml
 
 openapi:
-  path: raw.githubusercontent.com/argoproj/argo-schema-generator/main/schema/argo_all_k8s_kustomize_schema.json
+  path: https://raw.githubusercontent.com/argoproj/argo-schema-generator/main/schema/argo_all_k8s_kustomize_schema.json
 
 resources:
 - web.yml
