@@ -1,0 +1,104 @@
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: web
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-svc
+  strategy:
+    blueGreen: 
+      activeService: web-svc
+      previewService: web-svc-preview
+      previewReplicaCount: 1
+  template:
+    metadata:
+      labels:
+        app: web-svc
+    spec:
+      serviceAccountName: web
+      containers:
+      - name: web-svc
+        image: 763606934258.dkr.ecr.us-east-1.amazonaws.com/emojivoto-web:tag
+        env:
+        - name: WEB_PORT
+          value: "8080"
+        - name: EMOJISVC_HOST
+          value: emoji-svc.emojivoto:8080
+        - name: VOTINGSVC_HOST
+          value: voting-svc.emojivoto:8080
+        - name: INDEX_BUNDLE
+          value: dist/index_bundle.js
+        ports:
+        - containerPort: 8080
+          name: http
+        resources:
+          requests:
+            cpu: 100m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc-preview
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: clusterissuer-binbash-cert-manager-clusterissuer
+    kubernetes.io/ingress.class: private-apps
+    kubernetes.io/tls-acme: "true"
+  labels:
+    app.kubernetes.io/name: web
+    app.kubernetes.io/part-of: web
+  name: web-svc-ingress
+spec:
+  rules:
+  - host: web.aws.binbash.com.ar
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-svc
+            port:
+              number: 8080
+  - host: preview.web.aws.binbash.com.ar
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-svc-preview
+            port:
+              number: 8080
+  tls:
+  - hosts:
+    - web.aws.binbash.com.ar
+    - preview.web.aws.binbash.com.ar
+    secretName: web-svc-private-tls

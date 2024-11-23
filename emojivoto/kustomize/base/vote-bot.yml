@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vote-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vote-bot
+  template:
+    metadata:
+      labels:
+        app: vote-bot
+    spec:
+      containers:
+      - name: vote-bot
+        image: 763606934258.dkr.ecr.us-east-1.amazonaws.com/emojivoto-web:tag
+        command:
+        - emojivoto-vote-bot
+        env:
+        - name: WEB_HOST
+          value: web-svc.emojivoto:80
+        resources:
+          requests:
+            cpu: 10m
