@@ -20,6 +20,8 @@ spec:
         env:
         - name: WEB_HOST
           value: web-svc.emojivoto:80
+        - name: TTL
+          value: 600
         resources:
           requests:
             cpu: 10m
