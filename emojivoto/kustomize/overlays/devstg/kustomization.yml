@@ -61,8 +61,8 @@ patches:
       value: preview.web.demo.devstg.aws.binbash.com.ar
 images:
 - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/emojivoto-emoji-svc
-  newTag: 16-0318722
+  newTag: 18-cab99bb
 - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/emojivoto-voting-svc
-  newTag: 16-0318722
+  newTag: 18-cab99bb
 - name: 763606934258.dkr.ecr.us-east-1.amazonaws.com/emojivoto-web
-  newTag: 16-0318722
+  newTag: 18-cab99bb
